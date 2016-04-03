@@ -2,7 +2,7 @@ package com.innovation.web;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 /**
  * Created by ankur on 1/4/16.
@@ -11,7 +11,7 @@ public class WebServer {
     final static Logger log = Logger.getLogger("WebServer");
 
     public static void main(String[] args) throws InterruptedException {
-
+        System.out.println("fgfd");
         int index = 1;
         while (true){
             int port = 8000 ;

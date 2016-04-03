@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 /**
  * Created by ankur on 1/4/16.
@@ -23,8 +23,9 @@ public class HttpRequest implements Runnable {
         this.socket = socket;
         this.threadNum = threadNum;
         this.server = server;
-    }
 
+    }
+// #ppender.file.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n
     public void run() {
 
         try {
@@ -44,8 +45,10 @@ public class HttpRequest implements Runnable {
         OutputStream os = socket.getOutputStream();
         String headerLine = null;
 
+        int line = 0;
         while ((headerLine = br.readLine()).length() != 0) {
-            log.info(headerLine);
+            log.info(line+" ) -> "+ headerLine);
+            line++;
         }
         log.info("Writing response...");
         // need to construct response bytes first
