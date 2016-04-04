@@ -46,10 +46,33 @@ public class HttpRequest implements Runnable {
         String headerLine = null;
 
         int line = 0;
+        int length =0 ;
         while ((headerLine = br.readLine()).length() != 0) {
             log.info(line+" ) -> "+ headerLine);
+
+
+            if (headerLine.startsWith("Content-Length: ")) { // get the
+                // content-length
+                int index = headerLine.indexOf(':') + 1;
+                String len = headerLine.substring(index).trim();
+                length = Integer.parseInt(len);
+                log.info(" post call lenthh  "+length);
+            }
+
             line++;
         }
+
+        StringBuffer body = new StringBuffer();
+        if (length > 0) {
+            int read;
+            while ((read = br.read()) != -1) {
+                body.append((char) read);
+                if (body.length() == length)
+                    break;
+            }
+        }
+
+        log.info(" body if post call "+body);
         log.info("Writing response...");
         // need to construct response bytes first
         byte[] response = "<html><body>Hello World</body></html>".getBytes("ASCII");
