@@ -21,7 +21,7 @@ public class WebServer {
             try {
                 ServerSocket server = new ServerSocket(port);
                 Socket socket = server.accept();
-                HttpRequest httpRequest = new HttpRequest(server,socket,index );
+                Request httpRequest = new Request(server,socket,index );
                 httpRequest.run();
 //                Thread.sleep(1000);
 
